@@ -12,9 +12,15 @@ export class Refeicao {
 			data,
 		});
 	}
+
+	async deleteRefeicao(id: string) {
+		return await knex("refeicao").delete().where({id});
+	}
+
 	async findById(id: string) {
 		return await knex("refeicao").where({ id });
 	}
+
 	async getAll() {
 		return await knex("refeicao").select();
 	}
