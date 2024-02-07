@@ -18,7 +18,18 @@ export class Refeicao {
 	async getAll() {
 		return await knex("refeicao").select();
 	}
+
 	async findByUserId(usuario_id: string) {
 		return await knex("refeicao").where({usuario_id});
 	}
+
+	async findRefeicoesOnDietByUserId(usuario_id: string) {
+		return await knex("refeicao").where({usuario_id, esta_na_dieta: true});
+	}
+
+	async findRefeicoesOffDietByUserId(usuario_id: string) {
+		return await knex("refeicao").where({usuario_id, esta_na_dieta: false});
+	}
+
+	
 }
