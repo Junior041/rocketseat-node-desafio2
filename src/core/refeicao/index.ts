@@ -13,8 +13,17 @@ export class Refeicao {
 		});
 	}
 
+	async updateRefeicao(id: string, nome: string, descricao: string, esta_na_dieta: boolean, data: Date) {
+		await knex("refeicao").where({ id }).update({
+			nome,
+			descricao,
+			esta_na_dieta,
+			data,
+		});
+	}
+
 	async deleteRefeicao(id: string) {
-		return await knex("refeicao").delete().where({id});
+		return await knex("refeicao").delete().where({ id });
 	}
 
 	async findById(id: string) {
@@ -26,16 +35,14 @@ export class Refeicao {
 	}
 
 	async findByUserId(usuario_id: string) {
-		return await knex("refeicao").where({usuario_id});
+		return await knex("refeicao").where({ usuario_id });
 	}
 
 	async findRefeicoesOnDietByUserId(usuario_id: string) {
-		return await knex("refeicao").where({usuario_id, esta_na_dieta: true});
+		return await knex("refeicao").where({ usuario_id, esta_na_dieta: true });
 	}
 
 	async findRefeicoesOffDietByUserId(usuario_id: string) {
-		return await knex("refeicao").where({usuario_id, esta_na_dieta: false});
+		return await knex("refeicao").where({ usuario_id, esta_na_dieta: false });
 	}
-
-	
 }
